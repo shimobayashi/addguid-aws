@@ -2,9 +2,9 @@ require 'json'
 require 'test/unit'
 require 'mocha/test_unit'
 
-require_relative '../../hello_world/app'
+require_relative '../../addguid/app'
 
-class HelloWorldTest < Test::Unit::TestCase
+class AddGuidTest < Test::Unit::TestCase
   def event
     {
       body: 'eyJ0ZXN0IjoiYm9keSJ9',
