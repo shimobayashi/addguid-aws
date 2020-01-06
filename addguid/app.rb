@@ -41,7 +41,7 @@ def lambda_handler(event:, context:)
       rss = RSS::Maker.make('2.0') do |rss|
         rss.channel.title = feed.title
         rss.channel.description = feed.description
-        rss.channel.link = "#{to('/')}?#{request.query_string}"
+        rss.channel.link = feed.url #TODO 出力先のURLに置き換えたい
 
         feed.entries.each do |entry|
           item = rss.items.new_item
@@ -54,7 +54,7 @@ def lambda_handler(event:, context:)
         end
       end
 
-      p rss
+      p rss.to_s
     end
   rescue  Aws::DynamoDB::Errors::ServiceError => error
     puts "Unable to read item:"
