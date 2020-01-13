@@ -13,6 +13,7 @@ def lambda_handler(event:, context:)
 
   s3 = Aws::S3::Resource.new(region:'ap-northeast-1')
   begin
+    #TODO DynamoDBのテーブルもtemplate.yml の管理下にしたほうが良い気がする(できるのか知らんけど)
     result = dynamodb.scan({ table_name: 'addguid_target' })
     result.items.each do |target|
       puts target
