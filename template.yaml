@@ -22,6 +22,17 @@ Resources:
           Type: Schedule
           Properties:
             Schedule: cron(7 */3 * * ? *)
+      Policies:
+      - Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Action:
+          - 's3:PutObject'
+          Resource: "arn:aws:s3:::addguid-aws"
+  AddGuidAwsBucket:
+    Type: 'AWS::S3::Bucket'
+    Properties:
+      BucketName: "addguid-aws"
 
 Outputs:
   AddGuidFunction:
