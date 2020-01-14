@@ -17,8 +17,11 @@ File.foreach(ARGV[0]) do |line|
 
   next unless uri.host == ENV['OLD_HOST'] && uri.path == '/addguid/feed'
 
-  # 経緯は覚えてないけどパラメーターにamp;というゴミが入り込んでいるので削除する
-  params = Hash[URI.decode_www_form(uri.query).map { |e| e.map { |e| e.gsub('amp;', '') } } ]
+  params = Hash[
+    URI.decode_www_form(
+      CGI.unescape_html(uri.query) # XMLの実体参照を置換する
+    ).map { |e| e.map { |e| e.gsub('amp;', '') } } # 実体参照を置換してもパラメーターにamp;というゴミが入り込んでいるので削除する。経緯は忘れた
+  ]
 
   item = {}
   item['uri'] = CGI.unescape(params['url'])
