@@ -71,7 +71,8 @@ def lambda_handler(event:, context:)
           content_type: 'application/rss+xml;charset=UTF-8',
         )
       rescue => error
-        puts error
+        p error
+        puts error.backtrace.join("\n")
       end
     end
   rescue  Aws::DynamoDB::Errors::ServiceError => error
