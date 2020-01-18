@@ -1,10 +1,12 @@
 require 'json'
-require 'aws-sdk'
 require 'feed-normalizer'
 require 'open-uri'
 require 'digest/md5'
-require 'aws-sdk-s3'
 require 'cgi'
+# aws-sdkをrequireするとどういうことかよく分かってないけど本番Lambdaでタイムアウトまでスタックしてしまう
+#require 'aws-sdk'
+require 'aws-sdk-s3'
+require 'aws-sdk-dynamodb'
 
 def lambda_handler(event:, context:)
   dynamodb = Aws::DynamoDB::Client.new(
