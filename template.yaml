@@ -27,12 +27,12 @@ Resources:
         Statement:
         - Effect: Allow
           Action:
-          - 's3:PutObject'
-          Resource: "arn:aws:s3:::addguid-aws"
+          - 's3:*' # 本当は s3:PutObjectAcl だけで良い気がしてるんだけど、それだとなぜかAccess Deniedになってしまうので一旦諦めて雑に s3:* にしている
+          Resource: "arn:aws:s3:::addguid-aws/*" # https://www.noobs.tokyo/entry/2018/10/15/213237
         - Effect: Allow
           Action:
           - 'dynamodb:Scan'
-          Resource: "*"
+          Resource: "*" # なんとなく個人的なARNを書きたくなかったので雑に*にしてるけど良くない気がする
   AddGuidAwsBucket:
     Type: 'AWS::S3::Bucket'
     Properties:
