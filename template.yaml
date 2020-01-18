@@ -25,6 +25,8 @@ Resources:
       Policies:
       - Version: '2012-10-17'
         Statement:
+        # なんかこの辺本当はS3CrudPolicyってやつ使うと良さそう？だけど面倒なので今回は使ってない
+        # https://dev.classmethod.jp/server-side/serverless/20171203-updates-about-aws-serverless-application-model/
         - Effect: Allow
           Action:
           - 's3:*' # 本当は s3:PutObjectAcl だけで良い気がしてるんだけど、それだとなぜかAccess Deniedになってしまうので一旦諦めて雑に s3:* にしている
