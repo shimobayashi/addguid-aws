@@ -29,6 +29,10 @@ Resources:
           Action:
           - 's3:PutObject'
           Resource: "arn:aws:s3:::addguid-aws"
+        - Effect: Allow
+          Action:
+          - 'dynamodb:Scan'
+          Resource: "*"
   AddGuidAwsBucket:
     Type: 'AWS::S3::Bucket'
     Properties:
